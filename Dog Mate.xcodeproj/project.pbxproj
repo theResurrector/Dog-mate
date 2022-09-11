@@ -17,6 +17,9 @@
 		040E9F8928CD611300D7183B /* Dog_MateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040E9F8828CD611300D7183B /* Dog_MateUITests.swift */; };
 		040E9F8B28CD611300D7183B /* Dog_MateUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040E9F8A28CD611300D7183B /* Dog_MateUITestsLaunchTests.swift */; };
 		040E9F9828CD674B00D7183B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 040E9F9728CD674B00D7183B /* GoogleService-Info.plist */; };
+		040E9FA828CDB77900D7183B /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040E9FA628CDB77900D7183B /* TextFieldTableViewCell.swift */; };
+		040E9FA928CDB77900D7183B /* TextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040E9FA728CDB77900D7183B /* TextFieldTableViewCell.xib */; };
+		040E9FAB28CDBD3800D7183B /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040E9FAA28CDBD3800D7183B /* CreateUserViewController.swift */; };
 		0B401A40A81C7AA8F490A9FE /* Pods_Dog_Mate_Dog_MateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53376241C496804129E94F69 /* Pods_Dog_Mate_Dog_MateUITests.framework */; };
 		2DC72841657DC8B8EA13C7EA /* Pods_Dog_MateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F497B3F58A2A771CB4695106 /* Pods_Dog_MateTests.framework */; };
 		7A0DBDE9DC53FB3C5AD6FC81 /* Pods_Dog_Mate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6566E6FDC4A17F057562C7 /* Pods_Dog_Mate.framework */; };
@@ -54,6 +57,9 @@
 		040E9F8828CD611300D7183B /* Dog_MateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog_MateUITests.swift; sourceTree = "<group>"; };
 		040E9F8A28CD611300D7183B /* Dog_MateUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog_MateUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		040E9F9728CD674B00D7183B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		040E9FA628CDB77900D7183B /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		040E9FA728CDB77900D7183B /* TextFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldTableViewCell.xib; sourceTree = "<group>"; };
+		040E9FAA28CDBD3800D7183B /* CreateUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		3DB2B95D8D20BC79CCE6BD55 /* Pods-Dog Mate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dog Mate.debug.xcconfig"; path = "Target Support Files/Pods-Dog Mate/Pods-Dog Mate.debug.xcconfig"; sourceTree = "<group>"; };
 		3F9CBD22A9C4AC245D884FCD /* Pods-Dog MateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dog MateTests.debug.xcconfig"; path = "Target Support Files/Pods-Dog MateTests/Pods-Dog MateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		53376241C496804129E94F69 /* Pods_Dog_Mate_Dog_MateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dog_Mate_Dog_MateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +124,7 @@
 		040E9F6628CD610E00D7183B /* Dog Mate */ = {
 			isa = PBXGroup;
 			children = (
+				040E9FA528CDB74800D7183B /* Cells */,
 				040E9F6728CD610E00D7183B /* AppDelegate.swift */,
 				040E9F6928CD610E00D7183B /* SceneDelegate.swift */,
 				040E9F6B28CD610E00D7183B /* ViewController.swift */,
@@ -126,6 +133,7 @@
 				040E9F7228CD611200D7183B /* LaunchScreen.storyboard */,
 				040E9F7528CD611200D7183B /* Info.plist */,
 				040E9F9728CD674B00D7183B /* GoogleService-Info.plist */,
+				040E9FAA28CDBD3800D7183B /* CreateUserViewController.swift */,
 			);
 			path = "Dog Mate";
 			sourceTree = "<group>";
@@ -145,6 +153,15 @@
 				040E9F8A28CD611300D7183B /* Dog_MateUITestsLaunchTests.swift */,
 			);
 			path = "Dog MateUITests";
+			sourceTree = "<group>";
+		};
+		040E9FA528CDB74800D7183B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				040E9FA628CDB77900D7183B /* TextFieldTableViewCell.swift */,
+				040E9FA728CDB77900D7183B /* TextFieldTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		39B55213F02C68D38DE61C83 /* Frameworks */ = {
@@ -281,6 +298,7 @@
 			files = (
 				040E9F7428CD611200D7183B /* LaunchScreen.storyboard in Resources */,
 				040E9F9828CD674B00D7183B /* GoogleService-Info.plist in Resources */,
+				040E9FA928CDB77900D7183B /* TextFieldTableViewCell.xib in Resources */,
 				040E9F7128CD611200D7183B /* Assets.xcassets in Resources */,
 				040E9F6F28CD610E00D7183B /* Main.storyboard in Resources */,
 			);
@@ -411,8 +429,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				040E9F6C28CD610E00D7183B /* ViewController.swift in Sources */,
+				040E9FAB28CDBD3800D7183B /* CreateUserViewController.swift in Sources */,
 				040E9F6828CD610E00D7183B /* AppDelegate.swift in Sources */,
 				040E9F6A28CD610E00D7183B /* SceneDelegate.swift in Sources */,
+				040E9FA828CDB77900D7183B /* TextFieldTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
