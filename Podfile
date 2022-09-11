@@ -6,6 +6,7 @@ target 'Dog Mate' do
   use_frameworks!
   pod 'Firebase/Core'
   pod 'Firebase/Crashlytics'
+  pod 'Firebase/Database'
   # Pods for Dog Mate
 
   target 'Dog MateTests' do
