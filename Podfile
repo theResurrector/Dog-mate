@@ -7,6 +7,7 @@ target 'Dog Mate' do
   pod 'Firebase/Core'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Database'
+  pod 'Firebase/Auth'
   # Pods for Dog Mate
 
   target 'Dog MateTests' do
