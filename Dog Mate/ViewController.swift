@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .red
         // Do any additional setup after loading the view.
     }
-
+    
     @IBAction func didTapLogin(_ sender: UIButton) {
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     
     func goCreateAccountScreen() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(withIdentifier: "CreateUserViewController") as! CreateUserViewController
+        let vc = storyboard.instantiateViewController(withIdentifier: "FormViewController") as! FormViewController
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
