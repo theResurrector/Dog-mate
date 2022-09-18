@@ -6,12 +6,19 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ImageTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var ivImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func setImage(url: URL) {
+        ivImage.kf.setImage(with: url)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

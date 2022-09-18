@@ -85,7 +85,7 @@ class HomeLoggedInViewController: UIViewController {
         for pet in data {
             if let petData = pet.value as? [String: Any] {
                 var petObject = Pet()
-                if let age = petData["age"] as? Int {
+                if let age = petData["age"] as? String {
                     petObject.age = age
                 }
                 if let breed = petData["breed"] as? String {
@@ -97,8 +97,11 @@ class HomeLoggedInViewController: UIViewController {
                 if let image = petData["image"] as? String {
                     petObject.image = image
                 }
-                if let dateCreated = petData["dateCreated"] as? String {
-                    petObject.date_created = dateCreated
+                if let dateCreated = petData["dateCreated"] as? Int {
+                    let date = Date().millisecondsSince1970
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateStyle = .medium
+                    petObject.date_created = dateFormatter.string(from: Date(milliseconds: date))
                 }
                 if let vaccination = petData["vaccination"] as? NSNumber {
                     petObject.vaccination = vaccination.boolValue
@@ -130,5 +133,24 @@ extension HomeLoggedInViewController: UICollectionViewDelegate, UICollectionView
         let height: CGFloat = 100
         let width = UIScreen.main.bounds.width / 2
         return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let data = petData[indexPath.row]
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "PetDetailsViewController") as! PetDetailsViewController
+        vc.petData = data
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension Date {
+    var millisecondsSince1970: Int64 {
+        Int64((self.timeIntervalSince1970 * 1000.0).rounded())
+    }
+        
+    init(milliseconds: Int64) {
+        self = Date(timeIntervalSince1970: TimeInterval(milliseconds) / 1000)
     }
 }

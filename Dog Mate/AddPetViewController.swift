@@ -75,7 +75,7 @@ class AddPetViewController: UIViewController {
         
         if missingValue == 0 {
             let userId = UserDefaults.standard.string(forKey: "userid") ?? ""
-            dict["dateCreated"] = Date().timeIntervalSince1970
+            dict["dateCreated"] = Int(Date().timeIntervalSince1970*1000)
             dict["owner"] = userId
             let uniquePetId = UUID().uuidString
 

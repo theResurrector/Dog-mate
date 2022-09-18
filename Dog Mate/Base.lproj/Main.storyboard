@@ -106,6 +106,36 @@
             </objects>
             <point key="canvasLocation" x="1409" y="718"/>
         </scene>
+        <!--Pet Details View Controller-->
+        <scene sceneID="jiZ-oh-mg9">
+            <objects>
+                <viewController storyboardIdentifier="PetDetailsViewController" id="gt3-5R-shM" customClass="PetDetailsViewController" customModule="Dog_Mate" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FFD-Yk-JQi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RnT-JY-4P7">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="M88-Na-CUa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="M88-Na-CUa" firstAttribute="trailing" secondItem="RnT-JY-4P7" secondAttribute="trailing" id="je9-Gw-P2e"/>
+                            <constraint firstItem="RnT-JY-4P7" firstAttribute="top" secondItem="M88-Na-CUa" secondAttribute="top" id="pfe-k0-NoZ"/>
+                            <constraint firstItem="M88-Na-CUa" firstAttribute="bottom" secondItem="RnT-JY-4P7" secondAttribute="bottom" id="qDE-ga-PN2"/>
+                            <constraint firstItem="RnT-JY-4P7" firstAttribute="leading" secondItem="M88-Na-CUa" secondAttribute="leading" id="txa-Y2-HQZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="RnT-JY-4P7" id="qF2-ly-b3s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RYO-Ta-6iL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2100" y="718"/>
+        </scene>
         <!--Form View Controller-->
         <scene sceneID="jWG-ow-R4C">
             <objects>

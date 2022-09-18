@@ -158,4 +158,10 @@ struct FormFields {
         self.title = title
         self.field = field
     }
+    
+    init(title: String, field:String = "", value: Any?) {
+        self.title = title
+        self.field = field
+        self.value = value
+    }
 }

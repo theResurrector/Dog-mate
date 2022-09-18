@@ -8,7 +8,7 @@
 import Foundation
 
 struct Pet {
-    var age: Int?
+    var age: String?
     var breed: String?
     var desc: String?
     var image: String?
