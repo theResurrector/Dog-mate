@@ -62,7 +62,7 @@
         <!--Home Logged In View Controller-->
         <scene sceneID="Iyc-bH-NTf">
             <objects>
-                <viewController id="DeN-vV-dtT" customClass="HomeLoggedInViewController" customModule="Dog_Mate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeLoggedInViewController" id="DeN-vV-dtT" customClass="HomeLoggedInViewController" customModule="Dog_Mate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0bf-4W-VuQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -97,10 +97,14 @@
                             <constraint firstItem="JK8-yj-hld" firstAttribute="trailing" secondItem="kiD-iQ-5E7" secondAttribute="trailing" id="tXB-h5-hrR"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="2r3-Ke-pc8"/>
+                    <connections>
+                        <outlet property="collectionView" destination="kiD-iQ-5E7" id="CwU-r1-etX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adg-4n-rA8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1409" y="733"/>
+            <point key="canvasLocation" x="1409" y="718"/>
         </scene>
         <!--Form View Controller-->
         <scene sceneID="jWG-ow-R4C">
