@@ -13,6 +13,7 @@ class HomeLoggedInViewController: UIViewController {
     var petData: [Pet] = []
     let reference = Database.database(url: "https://dog-mate-e7f92-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
     
+    let userId: String = UserDefaults.standard.string(forKey: "userid") ?? ""
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             self.collectionView.register(UINib(nibName: "DogTypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DogTypeCollectionViewCell")
@@ -26,8 +27,7 @@ class HomeLoggedInViewController: UIViewController {
 
         let logoutButton = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logout))
         navigationItem.setLeftBarButton(logoutButton, animated: true)
-        let addPetButton = UIBarButtonItem(title: "Add pet", style: .plain, target: self, action: #selector(addPet))
-        navigationItem.setRightBarButton(addPetButton, animated: true)
+        
         
         fetchData()
     }
@@ -44,9 +44,14 @@ class HomeLoggedInViewController: UIViewController {
     
     @objc private func addPet() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(withIdentifier: "FormViewController") as! FormViewController
-        vc.formType = .Pet
+        let vc = storyboard.instantiateViewController(withIdentifier: "AddPetViewController") as! AddPetViewController
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func updateProfile() {
+//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "AddPetViewController") as! AddPetViewController
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     func fetchData() {
@@ -54,8 +59,23 @@ class HomeLoggedInViewController: UIViewController {
         petRef.observe(.value) {[weak self] snapshot in
             guard let weakself = self else { return }
             if let value = snapshot.value as? [String: Any] {
+                weakself.petData.removeAll()
                 weakself.petData.append(contentsOf: weakself.convertToData(data: value))
                 weakself.collectionView.reloadData()
+            }
+        }
+        
+        let userRef = self.reference.child("/users/\(userId)")
+        userRef.observe(.value) {[weak self] snapshot in
+            guard let weakself = self else { return }
+            if let value = snapshot.value as? [String: Any] {
+                if let pet = value["pet"] as? String, !pet.isEmpty {
+                    let updateProfileButton = UIBarButtonItem(title: "Update Profile", style: .plain, target: self, action: #selector(weakself.updateProfile))
+                    weakself.navigationItem.setRightBarButton(updateProfileButton, animated: true)
+                } else {
+                    let addPetButton = UIBarButtonItem(title: "Add pet", style: .plain, target: self, action: #selector(weakself.addPet))
+                    weakself.navigationItem.setRightBarButton(addPetButton, animated: true)
+                }
             }
         }
     }

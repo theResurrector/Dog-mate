@@ -28,7 +28,7 @@ class TextFieldTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func update(model: TextFieldCellModel) {
+    func update(model: FormFieldModel) {
         self.textField.placeholder = model.placeHolder
     }
     
@@ -43,6 +43,8 @@ extension TextFieldTableViewCell: UITextFieldDelegate {
     }
 }
 
-struct TextFieldCellModel {
-    var placeHolder: String
+struct FormFieldModel {
+    var title: String = ""
+    var placeHolder: String = ""
+    var field: String = ""
 }

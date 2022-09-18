@@ -7,15 +7,16 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class FormViewController: UIViewController {
     enum FormType {
         case Registration
         case User
-        case Pet
     }
     
     var formType: FormType = .Registration
+    var reference: DatabaseReference = Database.database(url: "https://dog-mate-e7f92-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -25,12 +26,23 @@ class FormViewController: UIViewController {
         }
     }
     
-    var dataSource: [[FormFields]] = []
+    var dataSource: [FormFields] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        let emailField = FormFields(field: "Email", placeholder: "Enter Email")
-        let passwordField = FormFields(field: "Password", placeholder: "Enter Password")
-        dataSource = [[emailField, passwordField]]
+        setupFields()
+    }
+    
+    func setupFields() {
+        switch formType {
+        case .Registration:
+            let emailField = FormFields(field: "email", placeholder: "Enter Email")
+            let passwordField = FormFields(field: "password", placeholder: "Enter Password")
+            dataSource = [emailField, passwordField]
+        case .User:
+            reference = reference.child("users")
+            let nameField = FormFields(field: "name", placeholder: "Enter Name")
+            dataSource = [nameField]
+        }
     }
     
     @IBAction func completeRegistration(_ sender: UIButton) {
@@ -38,16 +50,14 @@ class FormViewController: UIViewController {
         case .Registration:
             completeRegistration()
         case .User:
-            break
-        case .Pet:
-            break
+            completeUserProfile()
         }
         
     }
     
     private func completeRegistration() {
-        guard let email = dataSource[0][0].value, !email.isEmpty,
-              let password = dataSource[0][1].value, !password.isEmpty else {
+        guard let email = dataSource[0].value as? String, !email.isEmpty,
+              let password = dataSource[1].value as? String, !password.isEmpty else {
             print("Missing fields")
             return
         }
@@ -59,8 +69,49 @@ class FormViewController: UIViewController {
 
             guard error == nil else { return }
 
-            print("Sign in")
+            weakself.goToUpdateUserScreen()
         }
+    }
+    
+    private func completeUserProfile() {
+        guard let name = dataSource[0].value as? String, !name.isEmpty else {
+            print("Missing fields")
+            return
+        }
+        if let userId = Auth.auth().currentUser?.uid {
+            let dict = ["name": name, "pet": nil]
+            reference.child("\(userId)").setValue(dict)
+        }
+    }
+    
+    private func completePetProfile() {
+        var dict: [String: String] = [:]
+        var missingValue = 0
+        for data in dataSource {
+            if let value = data.value as? String, !value.isEmpty {
+                dict[data.field] = value
+            } else {
+                missingValue += 1
+                return
+            }
+        }
+        
+        if missingValue == 0 {
+            if let userId = Auth.auth().currentUser?.uid {
+                reference.child("\(userId)").updateChildValues(dict)
+            }
+        }
+    }
+    
+    func goToUpdateUserScreen() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "FormViewController") as! FormViewController
+        vc.formType = .User
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func registrationComplete() {
+        
     }
 }
 
@@ -70,35 +121,41 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSource.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource[section].count
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as! TextFieldTableViewCell
-        let information = dataSource[indexPath.section][indexPath.row]
+        let information = dataSource[indexPath.row]
         
-        let model = TextFieldCellModel(placeHolder: information.placeholder ?? "")
+        let model = FormFieldModel(placeHolder: information.placeholder ?? "")
         cell.update(model: model)
         
         cell.shouldFinishEditing = ({ [weak self] text in
             guard let weakself = self else { return }
-            weakself.dataSource[indexPath.section][indexPath.row].value = text
+            weakself.dataSource[indexPath.row].value = text
         })
         return cell
     }
 }
 
 struct FormFields {
+    var title: String = ""
     var field: String
     var placeholder: String?
-    var value: String?
+    var value: Any?
     
     init(field: String, placeholder: String?) {
         self.field = field
         self.placeholder = placeholder
+    }
+    
+    init(title: String, field: String) {
+        self.title = title
+        self.field = field
     }
 }

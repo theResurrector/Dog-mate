@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         let dataRef = self.reference.child("/\(userId)")
         dataRef.observeSingleEvent(of: .value) { snapshot in
             if let dict = snapshot.value as? [String: Any] {
+                UserDefaults.standard.set(userId, forKey: "userid")
                 self.goToLoggedInHomepageScreen()
             } else {
                 self.goToUpdateUserScreen()
