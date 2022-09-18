@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RadioTableViewCell" rowHeight="124" id="KGk-i7-Jjw" customClass="RadioTableViewCell" customModule="Dog_Mate" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="367" height="124"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="367" height="124"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6DG-JY-lwe">
+                        <rect key="frame" x="8" y="0.0" width="41.5" height="124"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbp-ZY-uuy">
+                        <rect key="frame" x="49.5" y="0.0" width="194" height="124"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kb-eA-eKh">
+                                <rect key="frame" x="0.0" y="0.0" width="97" height="124"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Radio_btn_unchecked" title="Button" imagePadding="8"/>
+                                <connections>
+                                    <action selector="didTapOnRadio:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KgJ-2Y-cdY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pi8-uM-Q2M">
+                                <rect key="frame" x="97" y="0.0" width="97" height="124"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Radio_btn_unchecked" title="Button" imagePadding="8"/>
+                                <connections>
+                                    <action selector="didTapOnRadio:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="egL-xd-6Ns"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6DG-JY-lwe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="7fT-Dp-yoC"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fbp-ZY-uuy" secondAttribute="trailing" id="IDA-47-od2"/>
+                    <constraint firstAttribute="bottom" secondItem="6DG-JY-lwe" secondAttribute="bottom" id="VBW-RY-Uqn"/>
+                    <constraint firstItem="fbp-ZY-uuy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Wbn-Yz-xMQ"/>
+                    <constraint firstAttribute="bottom" secondItem="fbp-ZY-uuy" secondAttribute="bottom" id="mVk-Y8-CzQ"/>
+                    <constraint firstItem="fbp-ZY-uuy" firstAttribute="leading" secondItem="6DG-JY-lwe" secondAttribute="trailing" id="zhZ-aJ-YVN"/>
+                    <constraint firstItem="6DG-JY-lwe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="zn6-df-B6G"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="titleLabel" destination="6DG-JY-lwe" id="bc5-LF-4Br"/>
+                <outletCollection property="radioGroup" destination="6kb-eA-eKh" collectionClass="NSMutableArray" id="5p8-ZU-Vuj"/>
+                <outletCollection property="radioGroup" destination="Pi8-uM-Q2M" collectionClass="NSMutableArray" id="8Rg-c6-h8d"/>
+            </connections>
+            <point key="canvasLocation" x="171.73913043478262" y="101.78571428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Radio_btn_unchecked" width="22" height="22"/>
+    </resources>
+</document>
