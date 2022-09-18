@@ -107,6 +107,7 @@ PODS:
   - GoogleUtilities/UserDefaults (7.7.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (2.0.0)
+  - Kingfisher (7.3.2)
   - leveldb-library (1.22.1)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
@@ -120,6 +121,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Crashlytics
   - Firebase/Database
+  - Kingfisher (~> 7.0)
 
 SPEC REPOS:
   trunk:
@@ -136,6 +138,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
+    - Kingfisher
     - leveldb-library
     - nanopb
     - PromisesObjC
@@ -154,10 +157,11 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   GTMSessionFetcher: 681175626052e03fdde7952f7e9c7a9785719506
+  Kingfisher: 0086ad83719761ba9b2cdaf6ef4d5b4878cbae23
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
 
-PODFILE CHECKSUM: f3902169dee7a8da77c70cc602100a3fc7f4463f
+PODFILE CHECKSUM: 54134817807b3cf476efcb3cbc2f11ede7b80c88
 
 COCOAPODS: 1.11.3

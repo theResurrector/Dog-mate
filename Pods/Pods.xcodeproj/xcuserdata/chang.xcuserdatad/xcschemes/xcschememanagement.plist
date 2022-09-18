@@ -95,6 +95,11 @@
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
+		<key>Kingfisher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Dog Mate-Dog MateUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>

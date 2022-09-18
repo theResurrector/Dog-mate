@@ -8,6 +8,8 @@ target 'Dog Mate' do
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'Kingfisher', '~> 7.0'
+
   # Pods for Dog Mate
 
   target 'Dog MateTests' do
