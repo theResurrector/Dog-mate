@@ -23,6 +23,7 @@
 		0478FDA128D6FE6D0011ADEF /* HomeLoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478FDA028D6FE6D0011ADEF /* HomeLoggedInViewController.swift */; };
 		0478FDA428D6FEB60011ADEF /* DogTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478FDA228D6FEB60011ADEF /* DogTypeCollectionViewCell.swift */; };
 		0478FDA528D6FEB60011ADEF /* DogTypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0478FDA328D6FEB60011ADEF /* DogTypeCollectionViewCell.xib */; };
+		0478FDA928D718E10011ADEF /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478FDA828D718E10011ADEF /* Pet.swift */; };
 		0B401A40A81C7AA8F490A9FE /* Pods_Dog_Mate_Dog_MateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53376241C496804129E94F69 /* Pods_Dog_Mate_Dog_MateUITests.framework */; };
 		2DC72841657DC8B8EA13C7EA /* Pods_Dog_MateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F497B3F58A2A771CB4695106 /* Pods_Dog_MateTests.framework */; };
 		7A0DBDE9DC53FB3C5AD6FC81 /* Pods_Dog_Mate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6566E6FDC4A17F057562C7 /* Pods_Dog_Mate.framework */; };
@@ -66,6 +67,7 @@
 		0478FDA028D6FE6D0011ADEF /* HomeLoggedInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLoggedInViewController.swift; sourceTree = "<group>"; };
 		0478FDA228D6FEB60011ADEF /* DogTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogTypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		0478FDA328D6FEB60011ADEF /* DogTypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DogTypeCollectionViewCell.xib; sourceTree = "<group>"; };
+		0478FDA828D718E10011ADEF /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 		3DB2B95D8D20BC79CCE6BD55 /* Pods-Dog Mate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dog Mate.debug.xcconfig"; path = "Target Support Files/Pods-Dog Mate/Pods-Dog Mate.debug.xcconfig"; sourceTree = "<group>"; };
 		3F9CBD22A9C4AC245D884FCD /* Pods-Dog MateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dog MateTests.debug.xcconfig"; path = "Target Support Files/Pods-Dog MateTests/Pods-Dog MateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		53376241C496804129E94F69 /* Pods_Dog_Mate_Dog_MateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dog_Mate_Dog_MateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +143,7 @@
 				040E9F9728CD674B00D7183B /* GoogleService-Info.plist */,
 				040E9FAA28CDBD3800D7183B /* FormViewController.swift */,
 				0478FDA028D6FE6D0011ADEF /* HomeLoggedInViewController.swift */,
+				0478FDA828D718E10011ADEF /* Pet.swift */,
 			);
 			path = "Dog Mate";
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				0478FDA128D6FE6D0011ADEF /* HomeLoggedInViewController.swift in Sources */,
 				0478FDA428D6FEB60011ADEF /* DogTypeCollectionViewCell.swift in Sources */,
 				040E9F6828CD610E00D7183B /* AppDelegate.swift in Sources */,
+				0478FDA928D718E10011ADEF /* Pet.swift in Sources */,
 				040E9F6A28CD610E00D7183B /* SceneDelegate.swift in Sources */,
 				040E9FA828CDB77900D7183B /* TextFieldTableViewCell.swift in Sources */,
 			);
