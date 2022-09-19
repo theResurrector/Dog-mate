@@ -111,6 +111,9 @@ class HomeLoggedInViewController: UIViewController {
         for pet in data {
             if let petData = pet.value as? [String: Any] {
                 var petObject = Pet()
+                if let name = petData["name"] as? String {
+                    petObject.name = name
+                }
                 if let age = petData["age"] as? String {
                     petObject.age = age
                 }
@@ -146,7 +149,7 @@ class HomeLoggedInViewController: UIViewController {
     }
     
     @IBAction func vaccinationStatusSelectedButton(_ sender: Any) {
-        var selectedValue = vaccinationPickerView.selectedRow(inComponent: 0)
+        let selectedValue = vaccinationPickerView.selectedRow(inComponent: 0)
         self.reloadData(status: selectedValue)
         self.stackViewForPicker.isHidden = true
     }
@@ -154,21 +157,29 @@ class HomeLoggedInViewController: UIViewController {
 }
 
 extension HomeLoggedInViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return petData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DogTypeCollectionViewCell", for: indexPath) as! DogTypeCollectionViewCell
+        cell.layer.cornerRadius = 24
+        cell.clipsToBounds = true
         
+        cell.updateCell(data: petData[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let height: CGFloat = 250
-        let width = (UIScreen.main.bounds.width - 32) / 2
+        let width = (view.frame.width - 32) / 2
         return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
