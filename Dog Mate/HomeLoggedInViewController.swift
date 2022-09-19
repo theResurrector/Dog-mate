@@ -10,7 +10,9 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class HomeLoggedInViewController: UIViewController {
+    var originalPetData: [Pet] = []
     var petData: [Pet] = []
+    let vaccinationStatuses: [String] = ["All", "Vaccniated", "Not Vaccinated"]
     let reference = Database.database(url: "https://dog-mate-e7f92-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
     
     let userId: String = UserDefaults.standard.string(forKey: "userid") ?? ""
@@ -22,11 +24,27 @@ class HomeLoggedInViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var isVaccinatedButton: UIButton! {
+        didSet {
+            
+        }
+    }
+    
+    @IBOutlet weak var stackViewForPicker: UIStackView!
+    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var vaccinationPickerView: UIPickerView! {
+        didSet {
+            vaccinationPickerView.delegate = self
+            vaccinationPickerView.dataSource = self
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let logoutButton = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logout))
         navigationItem.setLeftBarButton(logoutButton, animated: true)
         fetchData()
+        self.stackViewForPicker.isHidden = true
     }
     
     @objc private func logout() {
@@ -57,6 +75,7 @@ class HomeLoggedInViewController: UIViewController {
             guard let weakself = self else { return }
             if let value = snapshot.value as? [String: Any] {
                 weakself.petData.removeAll()
+                weakself.originalPetData.append(contentsOf: weakself.convertToData(data: value))
                 weakself.petData.append(contentsOf: weakself.convertToData(data: value))
                 weakself.collectionView.reloadData()
             }
@@ -77,6 +96,16 @@ class HomeLoggedInViewController: UIViewController {
         }
     }
     
+    func reloadData(status: Int) {
+        self.petData = self.originalPetData
+        if status == 1 {
+            self.petData = self.petData.filter({ $0.vaccination == true})
+        } else if status == 2 {
+            self.petData = self.petData.filter({ $0.vaccination == false})
+        }
+        self.collectionView.reloadData()
+    }
+    
     func convertToData(data: [String: Any]) -> [Pet] {
         var pets: [Pet] = []
         for pet in data {
@@ -95,10 +124,9 @@ class HomeLoggedInViewController: UIViewController {
                     petObject.image = image
                 }
                 if let dateCreated = petData["dateCreated"] as? Int {
-                    let date = Date().millisecondsSince1970
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateStyle = .medium
-                    petObject.date_created = dateFormatter.string(from: Date(milliseconds: date))
+                    petObject.date_created = dateFormatter.string(from: Date(milliseconds: Int64(dateCreated)))
                 }
                 if let vaccination = petData["vaccination"] as? NSNumber {
                     petObject.vaccination = vaccination.boolValue
@@ -112,6 +140,17 @@ class HomeLoggedInViewController: UIViewController {
         pets = pets.filter { $0.owner != Auth.auth().currentUser?.uid}
         return pets
     }
+    
+    @IBAction func vaccinationStatusButtonTapped(_ sender: UIButton) {
+        self.stackViewForPicker.isHidden = false
+    }
+    
+    @IBAction func vaccinationStatusSelectedButton(_ sender: Any) {
+        var selectedValue = vaccinationPickerView.selectedRow(inComponent: 0)
+        self.reloadData(status: selectedValue)
+        self.stackViewForPicker.isHidden = true
+    }
+    
 }
 
 extension HomeLoggedInViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -127,8 +166,8 @@ extension HomeLoggedInViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let height: CGFloat = 100
-        let width = UIScreen.main.bounds.width / 2
+        let height: CGFloat = 250
+        let width = (UIScreen.main.bounds.width - 32) / 2
         return CGSize(width: width, height: height)
     }
     
@@ -139,6 +178,20 @@ extension HomeLoggedInViewController: UICollectionViewDelegate, UICollectionView
         let vc = storyboard.instantiateViewController(withIdentifier: "PetDetailsViewController") as! PetDetailsViewController
         vc.petData = data
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension HomeLoggedInViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return vaccinationStatuses.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return vaccinationStatuses[row]
     }
 }
 

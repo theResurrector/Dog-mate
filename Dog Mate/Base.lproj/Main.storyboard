@@ -67,8 +67,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kku-pc-xwo">
+                                <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6q-1m-Xaw">
+                                        <rect key="frame" x="16" y="5" width="67" height="50"/>
+                                        <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <connections>
+                                            <action selector="vaccinationStatusButtonTapped:" destination="DeN-vV-dtT" eventType="touchUpInside" id="Xv7-yz-Sk0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="2qQ-rh-5XI"/>
+                                    <constraint firstAttribute="bottom" secondItem="U6q-1m-Xaw" secondAttribute="bottom" constant="5" id="3Wl-yL-6I3"/>
+                                    <constraint firstItem="U6q-1m-Xaw" firstAttribute="top" secondItem="Kku-pc-xwo" secondAttribute="top" constant="5" id="JKT-cU-FJu"/>
+                                    <constraint firstItem="U6q-1m-Xaw" firstAttribute="leading" secondItem="Kku-pc-xwo" secondAttribute="leading" constant="16" id="QM6-Cm-ugA"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kiD-iQ-5E7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xP1-u3-3vA">
                                     <size key="itemSize" width="128" height="128"/>
@@ -87,24 +108,56 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="prW-nw-gd9">
+                                <rect key="frame" x="0.0" y="602" width="414" height="260"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YIe-EG-jT8">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                        <items>
+                                            <barButtonItem systemItem="done" id="k0a-EJ-pxq">
+                                                <connections>
+                                                    <action selector="vaccinationStatusSelectedButton:" destination="DeN-vV-dtT" id="EoS-le-OyY"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VZG-7p-XX7">
+                                        <rect key="frame" x="0.0" y="44" width="414" height="216"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="216" id="Ql8-om-Fcu"/>
+                                        </constraints>
+                                    </pickerView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JK8-yj-hld"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JK8-yj-hld" firstAttribute="bottom" secondItem="kiD-iQ-5E7" secondAttribute="bottom" id="2Uq-Lv-8Pj"/>
+                            <constraint firstItem="Kku-pc-xwo" firstAttribute="leading" secondItem="JK8-yj-hld" secondAttribute="leading" id="MvE-H5-NHD"/>
+                            <constraint firstItem="prW-nw-gd9" firstAttribute="leading" secondItem="JK8-yj-hld" secondAttribute="leading" id="ZFs-fi-ej0"/>
+                            <constraint firstItem="prW-nw-gd9" firstAttribute="bottom" secondItem="JK8-yj-hld" secondAttribute="bottom" id="cbW-1g-nJh"/>
+                            <constraint firstItem="prW-nw-gd9" firstAttribute="trailing" secondItem="JK8-yj-hld" secondAttribute="trailing" id="deV-wu-J28"/>
+                            <constraint firstItem="JK8-yj-hld" firstAttribute="trailing" secondItem="Kku-pc-xwo" secondAttribute="trailing" id="ln8-rw-PWW"/>
                             <constraint firstItem="kiD-iQ-5E7" firstAttribute="leading" secondItem="JK8-yj-hld" secondAttribute="leading" id="muQ-3X-Jo3"/>
-                            <constraint firstItem="kiD-iQ-5E7" firstAttribute="top" secondItem="JK8-yj-hld" secondAttribute="top" id="nfo-EV-Enx"/>
+                            <constraint firstItem="Kku-pc-xwo" firstAttribute="top" secondItem="JK8-yj-hld" secondAttribute="top" id="nn1-d9-hO3"/>
+                            <constraint firstItem="kiD-iQ-5E7" firstAttribute="top" secondItem="Kku-pc-xwo" secondAttribute="bottom" id="sai-yk-85u"/>
                             <constraint firstItem="JK8-yj-hld" firstAttribute="trailing" secondItem="kiD-iQ-5E7" secondAttribute="trailing" id="tXB-h5-hrR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2r3-Ke-pc8"/>
                     <connections>
                         <outlet property="collectionView" destination="kiD-iQ-5E7" id="CwU-r1-etX"/>
+                        <outlet property="isVaccinatedButton" destination="U6q-1m-Xaw" id="8bu-MJ-Oq8"/>
+                        <outlet property="stackViewForPicker" destination="prW-nw-gd9" id="x9y-jE-Xj5"/>
+                        <outlet property="toolbar" destination="YIe-EG-jT8" id="cd2-DJ-atB"/>
+                        <outlet property="vaccinationPickerView" destination="VZG-7p-XX7" id="lbx-os-BeS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adg-4n-rA8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1409" y="709"/>
+            <point key="canvasLocation" x="1408.6956521739132" y="708.48214285714278"/>
         </scene>
         <!--Pet Details View Controller-->
         <scene sceneID="jiZ-oh-mg9">
