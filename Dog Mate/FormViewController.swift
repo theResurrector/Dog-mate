@@ -39,10 +39,23 @@ class FormViewController: UIViewController {
             let passwordField = FormFields(field: "password", placeholder: "Enter Password")
             dataSource = [emailField, passwordField]
         case .User:
+            let logoutButton = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logout))
+            navigationItem.setLeftBarButton(logoutButton, animated: true)
+            
             reference = reference.child("users")
             let nameField = FormFields(field: "name", placeholder: "Enter Name")
             dataSource = [nameField]
         }
+    }
+    
+    @objc private func logout() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print ("Already logged out")
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func completeRegistration(_ sender: UIButton) {
@@ -68,8 +81,11 @@ class FormViewController: UIViewController {
             }
 
             guard error == nil else { return }
-
-            weakself.goToUpdateUserScreen()
+            if let userId = auth?.user.uid {
+                UserDefaults.standard.set(userId, forKey: "userid")
+                weakself.goToUpdateUserScreen()
+            }
+            
         }
     }
     
@@ -81,25 +97,7 @@ class FormViewController: UIViewController {
         if let userId = Auth.auth().currentUser?.uid {
             let dict = ["name": name, "pet": nil]
             reference.child("\(userId)").setValue(dict)
-        }
-    }
-    
-    private func completePetProfile() {
-        var dict: [String: String] = [:]
-        var missingValue = 0
-        for data in dataSource {
-            if let value = data.value as? String, !value.isEmpty {
-                dict[data.field] = value
-            } else {
-                missingValue += 1
-                return
-            }
-        }
-        
-        if missingValue == 0 {
-            if let userId = Auth.auth().currentUser?.uid {
-                reference.child("\(userId)").updateChildValues(dict)
-            }
+            goToAddPet()
         }
     }
     
@@ -110,8 +108,10 @@ class FormViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func registrationComplete() {
-        
+    func goToAddPet() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "AddPetViewController") as! AddPetViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

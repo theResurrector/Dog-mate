@@ -15,13 +15,15 @@ class ViewController: UIViewController {
     
     let reference = Database.database(url: "https://dog-mate-e7f92-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("users")
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .red
-        
+    override func viewWillAppear(_ animated: Bool) {
         if let uid = Auth.auth().currentUser?.uid {
             checkUserData(userId: uid)
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .red
     }
     
     func checkUserData(userId: String) {

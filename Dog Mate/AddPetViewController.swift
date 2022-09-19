@@ -81,6 +81,13 @@ class AddPetViewController: UIViewController {
 
             reference.child("pets/\(uniquePetId)").setValue(dict)
             reference.child("users/\(userId)").updateChildValues(["pet": uniquePetId])
+            
+            if self.navigationController?.viewControllers.count ?? 0 == 3 {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            
         }
     }
     
