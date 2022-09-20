@@ -41,6 +41,7 @@ class HomeLoggedInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "DOG MATE"
         let logoutButton = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logout))
         navigationItem.setLeftBarButton(logoutButton, animated: true)
         fetchData()
@@ -48,25 +49,29 @@ class HomeLoggedInViewController: UIViewController {
     }
     
     @objc private func logout() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print ("Already logged out")
-        }
-        
-        navigationController?.popViewController(animated: true)
+        let alert = UIAlertController(title: "Sign out?", message: "You can always access your content by signing back in",
+                                      preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+            alert.dismiss(animated: true)
+                }))
+                alert.addAction(UIAlertAction(title: "Log out",
+                                              style: UIAlertAction.Style.default,
+                                              handler: {(_: UIAlertAction!) in
+                    do {
+                        try Auth.auth().signOut()
+                    } catch {
+                        print ("Already logged out")
+                    }
+                    
+                    self.navigationController?.popViewController(animated: true)
+                }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc private func addPet() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: "AddPetViewController") as! AddPetViewController
         self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @objc private func updateProfile() {
-//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "AddPetViewController") as! AddPetViewController
-//        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     func fetchData() {
@@ -86,8 +91,7 @@ class HomeLoggedInViewController: UIViewController {
             guard let weakself = self else { return }
             if let value = snapshot.value as? [String: Any] {
                 if let pet = value["pet"] as? String, !pet.isEmpty {
-                    let updateProfileButton = UIBarButtonItem(title: "Update Profile", style: .plain, target: self, action: #selector(weakself.updateProfile))
-                    weakself.navigationItem.setRightBarButton(updateProfileButton, animated: true)
+                    
                 } else {
                     let addPetButton = UIBarButtonItem(title: "Add pet", style: .plain, target: self, action: #selector(weakself.addPet))
                     weakself.navigationItem.setRightBarButton(addPetButton, animated: true)

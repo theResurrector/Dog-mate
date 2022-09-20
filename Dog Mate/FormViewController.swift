@@ -26,6 +26,7 @@ class FormViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var buttonDone: UIButton!
     var dataSource: [FormFields] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +36,14 @@ class FormViewController: UIViewController {
     func setupFields() {
         switch formType {
         case .Registration:
+            self.title = "Registration"
+            self.buttonDone.setTitle("REGISTER", for: .normal)
             let emailField = FormFields(field: "email", placeholder: "Enter Email")
             let passwordField = FormFields(field: "password", placeholder: "Enter Password")
             dataSource = [emailField, passwordField]
         case .User:
+            self.title = "Update Profile"
+            self.buttonDone.setTitle("COMPLETE", for: .normal)
             let logoutButton = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logout))
             navigationItem.setLeftBarButton(logoutButton, animated: true)
             
@@ -49,13 +54,23 @@ class FormViewController: UIViewController {
     }
     
     @objc private func logout() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print ("Already logged out")
-        }
-        
-        navigationController?.popViewController(animated: true)
+        let alert = UIAlertController(title: "Sign out?", message: "You can always access your content by signing back in",
+                                      preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+            alert.dismiss(animated: true)
+                }))
+                alert.addAction(UIAlertAction(title: "Log out",
+                                              style: UIAlertAction.Style.default,
+                                              handler: {(_: UIAlertAction!) in
+                    do {
+                        try Auth.auth().signOut()
+                    } catch {
+                        print ("Already logged out")
+                    }
+                    
+                    self.navigationController?.popToRootViewController(animated: true)
+                }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func completeRegistration(_ sender: UIButton) {
@@ -72,6 +87,7 @@ class FormViewController: UIViewController {
         guard let email = dataSource[0].value as? String, !email.isEmpty,
               let password = dataSource[1].value as? String, !password.isEmpty else {
             print("Missing fields")
+            self.showSimpleAlert()
             return
         }
 
@@ -92,6 +108,7 @@ class FormViewController: UIViewController {
     private func completeUserProfile() {
         guard let name = dataSource[0].value as? String, !name.isEmpty else {
             print("Missing fields")
+            showSimpleAlert()
             return
         }
         if let userId = Auth.auth().currentUser?.uid {

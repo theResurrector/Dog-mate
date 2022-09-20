@@ -11,7 +11,14 @@ import FirebaseDatabase
 
 class ViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField! {
+        didSet {
+            passwordTextField.isSecureTextEntry = !isShow
+        }
+    }
+    
+    @IBOutlet weak var showPasswordButton: UIButton!
+    var isShow = false
     
     let reference = Database.database(url: "https://dog-mate-e7f92-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("users")
     
@@ -23,7 +30,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+    }
+    
+    @IBAction func showHidePassword(_ sender: UIButton) {
+        let title = isShow ? "SHOW" : "HIDE"
+        passwordTextField.isSecureTextEntry = isShow
+        showPasswordButton.setTitle(title, for: .normal)
+        
+        self.isShow = !isShow
     }
     
     func checkUserData(userId: String) {
@@ -41,7 +55,7 @@ class ViewController: UIViewController {
     @IBAction func didTapLogin(_ sender: UIButton) {
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
-            print("Missing fields")
+            self.showSimpleAlert()
             return
         }
         
@@ -65,7 +79,6 @@ class ViewController: UIViewController {
     func goCreateAccountScreen() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: "FormViewController") as! FormViewController
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -83,3 +96,14 @@ class ViewController: UIViewController {
     }
 }
 
+extension UIViewController {
+    func showSimpleAlert() {
+        let alert = UIAlertController(title: "Missing Fields", message: "Please ensure all fields are filled in",
+                                      preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+            alert.dismiss(animated: true)
+                }))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+}

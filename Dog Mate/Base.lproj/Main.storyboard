@@ -12,39 +12,83 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Dog_Mate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ikK-5v-Dre">
-                                <rect key="frame" x="24" y="383.5" width="366" height="129"/>
+                                <rect key="frame" x="24" y="358" width="366" height="180"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7m3-0a-3XC">
-                                        <rect key="frame" x="0.0" y="0.0" width="366" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="366" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="UGS-cA-ZTG"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yUv-Gk-V56">
-                                        <rect key="frame" x="0.0" y="49" width="366" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cu9-bP-rNB">
-                                        <rect key="frame" x="0.0" y="98" width="366" height="31"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMr-cd-fEs">
+                                        <rect key="frame" x="0.0" y="65" width="366" height="50"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yUv-Gk-V56">
+                                                <rect key="frame" x="0.0" y="0.0" width="366" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="ieP-tn-NFZ"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASj-8n-bix">
+                                                <rect key="frame" x="298.5" y="9.5" width="59.5" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Show"/>
+                                                <connections>
+                                                    <action selector="showHidePassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XG5-9V-Z2p"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="yUv-Gk-V56" secondAttribute="trailing" id="SI6-Wb-ODK"/>
+                                            <constraint firstAttribute="bottom" secondItem="yUv-Gk-V56" secondAttribute="bottom" id="V32-Y5-vPZ"/>
+                                            <constraint firstItem="ASj-8n-bix" firstAttribute="centerY" secondItem="pMr-cd-fEs" secondAttribute="centerY" id="XIl-V3-Nh0"/>
+                                            <constraint firstItem="yUv-Gk-V56" firstAttribute="top" secondItem="pMr-cd-fEs" secondAttribute="top" id="dyu-Aj-5fo"/>
+                                            <constraint firstItem="yUv-Gk-V56" firstAttribute="leading" secondItem="pMr-cd-fEs" secondAttribute="leading" id="pGP-6c-ohR"/>
+                                            <constraint firstAttribute="trailing" secondItem="ASj-8n-bix" secondAttribute="trailing" constant="8" id="pdO-CC-E1a"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMF-YJ-ar5" customClass="DogMateButton" customModule="Dog_Mate" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="130" width="366" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Mtl-Md-LVN"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Log in"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="LOG IN"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="didTapLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P2f-dn-Gv5"/>
+                                            <action selector="didTapLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pKc-u3-I9n"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog icon" translatesAutoresizingMaskIntoConstraints="NO" id="FIo-IS-uZv">
+                                <rect key="frame" x="167" y="254" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="258-ko-IG0"/>
+                                    <constraint firstAttribute="height" constant="80" id="ldO-8m-fa4"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemTealColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ikK-5v-Dre" secondAttribute="trailing" constant="24" id="cmE-FC-Uc4"/>
+                            <constraint firstItem="FIo-IS-uZv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jPa-vR-Yt6"/>
+                            <constraint firstItem="ikK-5v-Dre" firstAttribute="top" secondItem="FIo-IS-uZv" secondAttribute="bottom" constant="24" id="mfS-6Y-4yC"/>
                             <constraint firstItem="ikK-5v-Dre" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ulw-VJ-kFQ"/>
                             <constraint firstItem="ikK-5v-Dre" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="xXV-60-2xs"/>
                         </constraints>
@@ -53,9 +97,9 @@
                     <connections>
                         <outlet property="emailTextField" destination="7m3-0a-3XC" id="rpX-mY-01L"/>
                         <outlet property="passwordTextField" destination="yUv-Gk-V56" id="YLW-dk-Wf6"/>
+                        <outlet property="showPasswordButton" destination="ASj-8n-bix" id="pNv-hG-RzS"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1408.6956521739132" y="14.732142857142856"/>
         </scene>
@@ -71,10 +115,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6q-1m-Xaw">
-                                        <rect key="frame" x="16" y="5" width="67" height="50"/>
+                                        <rect key="frame" x="16" y="5" width="156.5" height="50"/>
                                         <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Filter Vaccine Status"/>
                                         <connections>
                                             <action selector="vaccinationStatusButtonTapped:" destination="DeN-vV-dtT" eventType="touchUpInside" id="Xv7-yz-Sk0"/>
                                         </connections>
@@ -187,7 +231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RYO-Ta-6iL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3010.144927536232" y="717.85714285714278"/>
+            <point key="canvasLocation" x="2100" y="708"/>
         </scene>
         <!--Form View Controller-->
         <scene sceneID="jWG-ow-R4C">
@@ -198,19 +242,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mkQ-NZ-DHU">
-                                <rect key="frame" x="0.0" y="44" width="414" height="762"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJl-v1-YB2">
-                                <rect key="frame" x="0.0" y="806" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="796" width="414" height="66"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciC-56-n0F">
-                                        <rect key="frame" x="16" y="8" width="382" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciC-56-n0F" customClass="DogMateButton" customModule="Dog_Mate" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="8" width="382" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="QIi-7j-h3B"/>
+                                            <constraint firstAttribute="height" constant="50" id="QIi-7j-h3B"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="B"/>
                                         <connections>
                                             <action selector="completeRegistration:" destination="QAR-fh-EMN" eventType="touchUpInside" id="3h5-jc-phX"/>
                                         </connections>
@@ -238,6 +282,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buttonDone" destination="ciC-56-n0F" id="zKH-1s-vU7"/>
                         <outlet property="tableView" destination="mkQ-NZ-DHU" id="9JC-dR-zt4"/>
                     </connections>
                 </viewController>
@@ -254,19 +299,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LSf-vt-qFG">
-                                <rect key="frame" x="0.0" y="44" width="414" height="762"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d7c-kh-2UA">
-                                <rect key="frame" x="0.0" y="806" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="796" width="414" height="66"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2KF-kN-Ec5">
-                                        <rect key="frame" x="16" y="8" width="382" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2KF-kN-Ec5" customClass="DogMateButton" customModule="Dog_Mate" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="8" width="382" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="gUM-hY-caf"/>
+                                            <constraint firstAttribute="height" constant="50" id="gUM-hY-caf"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="B"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="ADD PET"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="doneButtonPressed:" destination="nwZ-D4-KqU" eventType="touchUpInside" id="1FJ-5z-6Vd"/>
                                         </connections>
@@ -320,9 +368,24 @@
             <point key="canvasLocation" x="498.55072463768118" y="14.732142857142856"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="2KF-kN-Ec5">
+            <size key="intrinsicContentSize" width="83" height="31"/>
+        </designable>
+        <designable name="FMF-YJ-ar5">
+            <size key="intrinsicContentSize" width="70" height="31"/>
+        </designable>
+        <designable name="ciC-56-n0F">
+            <size key="intrinsicContentSize" width="33.5" height="31"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="dog icon" width="64" height="64"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

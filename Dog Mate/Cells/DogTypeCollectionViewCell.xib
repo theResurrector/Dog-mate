@@ -90,6 +90,7 @@
             </constraints>
             <size key="customSize" width="184" height="265"/>
             <connections>
+                <outlet property="ivImage" destination="epa-Al-QJR" id="l1v-3L-8w3"/>
                 <outlet property="labelAge" destination="aXX-5Z-WuZ" id="xfa-Tz-C05"/>
                 <outlet property="labelBreed" destination="OU5-mY-WAN" id="bTT-qs-jHN"/>
                 <outlet property="labelName" destination="t1c-0J-OuH" id="Hr6-Nj-pHT"/>

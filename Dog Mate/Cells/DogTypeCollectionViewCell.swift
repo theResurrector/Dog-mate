@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DogTypeCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var ivImage: UIImageView!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelBreed: UILabel!
     @IBOutlet weak var labelAge: UILabel!
@@ -20,6 +22,9 @@ class DogTypeCollectionViewCell: UICollectionViewCell {
     }
 
     func updateCell(data: Pet) {
+        if let url = URL(string: data.image ?? "") {
+            ivImage.kf.setImage(with: url)
+        }
         labelName.text = data.name
         labelBreed.text = data.breed
         labelAge.text = data.age

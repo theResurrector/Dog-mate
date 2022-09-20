@@ -17,15 +17,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rf2-84-LZl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="133.5" height="100"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="hSo-Hc-Xub"/>
+                            <constraint firstAttribute="width" secondItem="rf2-84-LZl" secondAttribute="height" multiplier="4:3" id="sQ3-jW-BgQ"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="rf2-84-LZl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="4HX-OR-F1D"/>
                     <constraint firstAttribute="trailing" secondItem="rf2-84-LZl" secondAttribute="trailing" id="7UQ-V5-i75"/>
+                    <constraint firstAttribute="bottom" secondItem="rf2-84-LZl" secondAttribute="bottom" constant="8" id="UtM-3A-xZT"/>
                     <constraint firstItem="rf2-84-LZl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ZEo-Bi-ghH"/>
                     <constraint firstAttribute="bottom" secondItem="rf2-84-LZl" secondAttribute="bottom" id="pYg-De-yFp"/>
                 </constraints>

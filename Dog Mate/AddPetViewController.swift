@@ -40,8 +40,12 @@ class AddPetViewController: UIViewController {
     var reference: DatabaseReference = Database.database(url: "https://dog-mate-e7f92-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.title = "Add your pet details"
         setupFields()
+        
+        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(popToDestination))
+        navigationItem.setLeftBarButton(backButton, animated: true)
     }
     
     func setupFields() {
@@ -82,12 +86,16 @@ class AddPetViewController: UIViewController {
             reference.child("pets/\(uniquePetId)").setValue(dict)
             reference.child("users/\(userId)").updateChildValues(["pet": uniquePetId])
             
-            if self.navigationController?.viewControllers.count ?? 0 == 3 {
-                self.navigationController?.popViewController(animated: true)
-            } else {
-                self.navigationController?.popToRootViewController(animated: true)
-            }
+            self.popToDestination()
             
+        }
+    }
+    
+    @objc func popToDestination() {
+        if self.navigationController?.viewControllers.count ?? 0 == 3 {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
     
@@ -99,7 +107,7 @@ class AddPetViewController: UIViewController {
 
 extension AddPetViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 50
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

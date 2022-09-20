@@ -28,6 +28,7 @@ class PetDetailsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
+            tableView.separatorStyle = .none
             tableView.register(UINib(nibName: "ImageTableViewCell", bundle: nil), forCellReuseIdentifier: "ImageTableViewCell")
             tableView.register(UINib(nibName: "TitleSubtitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleSubtitleTableViewCell")
             tableView.delegate = self
@@ -48,11 +49,14 @@ class PetDetailsViewController: UIViewController {
                     dataSource.append(CellItem(type: .image, value: FormFields(title: "Image", value: imageUrl)))
                 }
             }
-            if let age = pet.age {
-                dataSource.append(CellItem(type: .details, value: FormFields(title: "Age", value: age)))
+            if let name = pet.name {
+                dataSource.append(CellItem(type: .details, value: FormFields(title: "Name", value: name)))
             }
             if let breed = pet.breed {
                 dataSource.append(CellItem(type: .details, value: FormFields(title: "Breed", value: breed)))
+            }
+            if let age = pet.age {
+                dataSource.append(CellItem(type: .details, value: FormFields(title: "Age", value: age)))
             }
             if let desc = pet.desc {
                 dataSource.append(CellItem(type: .details, value: FormFields(title: "Description", value: desc)))
